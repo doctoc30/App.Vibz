@@ -3,7 +3,7 @@
   "name": "VIBZ",
   "short_name": "VIBZ",
   "description": "Google Business Profile Specialists",
-  "start_url": "/?utm_source=homescreen",
+"start_url": "/",,
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
