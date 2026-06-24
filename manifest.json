@@ -3,13 +3,12 @@
   "name": "VIBZ",
   "short_name": "VIBZ",
   "description": "Google Business Profile Specialists",
-  "start_url": "/?utm_source=homescreen",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#FFF5EE",
   "theme_color": "#FF6B00",
-  "gcm_sender_id": "482941778795",
   "prefer_related_applications": false,
   "icons": [
     {
