@@ -24,6 +24,7 @@
         serviceWorkerParam: { scope: "/" },
         notifyButton: { enable: false }
       });
+      console.log('OneSignal initialized');
     });
   </script>
 
@@ -32,7 +33,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
-  :root{--primary:#FF6B00;--primary-light:#FFF5EE;--bg:#FFFFFF;--text:#121212;--card-bg:rgba(255,255,0.9);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom);--gray:#666;--border:rgba(255,107,0,0.1);}
+  :root{--primary:#FF6B00;--primary-light:#FFF5EE;--bg:#FFFFFF;--text:#121212;--card-bg:rgba(255,255,255,0.9);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom);--gray:#666;--border:rgba(255,107,0,0.1);}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:'Inter',sans-serif;}
   body,html{height:100%;background-color:var(--primary-light);color:var(--text);overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;}
   #app-loader{position:fixed;inset:0;background:#FFF2EB;z-index:10000;display:flex;align-items:center;justify-content:center;transition:transform 0.8s cubic-bezier(0.9,0,0.1,1);}
@@ -129,14 +130,14 @@
   .biz-star{font-size:14px;color:#f5b81b;}
   .biz-star.off{color:#e0e0e0;}
   .biz-review-txt{font-size:11px;color:#888;font-weight:600;}
-  .biz-info-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f5f5;font-size:12px;font-weight:600;color:#444;}
+  .biz-info-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:12px;font-weight:600;color:#444;}
   .biz-info-row:last-of-type{border-bottom:none;}
   .biz-info-row i{width:16px;color:var(--primary);font-size:12px;flex-shrink:0;}
   .biz-actions{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap;}
   .biz-act{flex:1;min-width:60px;background:var(--primary-light);border:1.5px solid rgba(255,107,0,0.2);border-radius:14px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;font-weight:800;color:var(--primary);cursor:default;transition:all .2s;}
   .biz-act i{font-size:15px;}
   .biz-act.primary-act{background:var(--primary);color:white;border-color:var(--primary);}
-  .biz-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid #f5f5;}
+  .biz-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid #f5f5f5;}
   .biz-tag{font-size:10px;font-weight:700;color:#555;background:#f5f5f5;padding:4px 10px;border-radius:60px;}
   .vibz-powered{text-align:center;margin-top:12px;font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;opacity:.7;}
   .listing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;}
@@ -241,70 +242,67 @@
   .dropdown-menu{position:absolute;top:110%;left:50%;transform:translateX(-50%);background:white;border-radius:24px;box-shadow:0 20px 40px rgba(255,107,0,0.15);min-width:200px;padding:12px 0;z-index:100;border:1px solid rgba(255,107,0,0.1);display:none;}
   .dropdown-menu.active-drop{display:block;}
   .dropdown-menu a{display:flex;align-items:center;gap:12px;padding:12px 24px;color:var(--text);text-decoration:none;font-weight:600;font-size:0.95rem;transition:background 0.1s;}
- .dropdown-menu a i{color:var(--primary);width:20px;font-size:1rem;}
-   .dropdown-menu a:hover{background:#FFF5EE;}
-   .social-icons{max-width:400px;width:100%;margin:10px auto 0;justify-content:center;align-items:center;display:flex!important;flex-wrap:nowrap;gap:50px;}
-   .social-icons a{width:70px;height:70px;display:flex;justify-content:center;align-items:center;animation:coin-spin 6s linear infinite;transform-style:preserve-3d;perspective:1000px;margin:0;text-decoration:none;transition:all 0.3s ease;background:transparent;border-radius:50%;position:relative;top:10px;}
-   .social-icons a img{width:48px;height:48px;filter:brightness(0) saturate(100%) invert(47%) sepia(81%) saturate(2458%) hue-rotate(360deg) brightness(102%) contrast(106%);transition:transform 0.4s ease;}
-   .social-icons a:hover{animation-play-state:paused;transform:scale(1.15) translateY(-3px);}
-    @keyframes coin-spin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
-   .copyright{font-weight:600;letter-spacing:0.5px;color:var(--text);opacity:0.7;margin-top:10px;}
-   .app-dock{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);height:70px;display:flex;justify-content:space-around;align-items:center;box-shadow:0 -5px 20px rgba(0,0,0,0.08);z-index:1000;padding-bottom:env(safe-area-inset-bottom);border-top:1px solid rgba(255,107,0,0.15);width:100%;}
-   .dock-btn{display:flex;flex-direction:column;align-items:center;color:#A0A0A0;text-decoration:none;gap:4px;cursor:pointer;background:none;border:none;flex:1;padding:8px 0;}
-   .dock-btn.active{color:var(--primary);}
-   .dock-btn i{font-size:1.4rem;}
-   .dock-btn span{font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
-   .dock-center{width:60px;height:60px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;margin-top:-32px;border:4px solid var(--primary-light);box-shadow:0 8px 20px rgba(255,107,0,0.35);cursor:pointer;transition:transform 0.2s;}
-   .dock-center:hover{transform:scale(1.05);}
+  .dropdown-menu a i{color:var(--primary);width:20px;font-size:1rem;}
+  .dropdown-menu a:hover{background:#FFF5EE;}
+  .social-icons{max-width:400px;width:100%;margin:10px auto 0;justify-content:center;align-items:center;display:flex!important;flex-wrap:nowrap;gap:50px;}
+  .social-icons a{width:70px;height:70px;display:flex;justify-content:center;align-items:center;animation:coin-spin 6s linear infinite;transform-style:preserve-3d;perspective:1000px;margin:0;text-decoration:none;transition:all 0.3s ease;background:transparent;border-radius:50%;position:relative;top:10px;}
+  .social-icons a img{width:48px;height:48px;filter:brightness(0) saturate(100%) invert(47%) sepia(81%) saturate(2458%) hue-rotate(360deg) brightness(102%) contrast(106%);transition:transform 0.4s ease;}
+  .social-icons a:hover{animation-play-state:paused;transform:scale(1.15) translateY(-3px);}
+  @keyframes coin-spin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
+  .copyright{font-weight:600;letter-spacing:0.5px;color:var(--text);opacity:0.7;margin-top:10px;}
+  .app-dock{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);height:70px;display:flex;justify-content:space-around;align-items:center;box-shadow:0 -5px 20px rgba(0,0,0,0.08);z-index:1000;padding-bottom:env(safe-area-inset-bottom);border-top:1px solid rgba(255,107,0,0.15);width:100%;}
+  .dock-btn{display:flex;flex-direction:column;align-items:center;color:#A0A0A0;text-decoration:none;gap:4px;cursor:pointer;background:none;border:none;flex:1;padding:8px 0;}
+  .dock-btn.active{color:var(--primary);}
+  .dock-btn i{font-size:1.4rem;}
+  .dock-btn span{font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
+  .dock-center{width:60px;height:60px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;margin-top:-32px;border:4px solid var(--primary-light);box-shadow:0 8px 20px rgba(255,107,0,0.35);cursor:pointer;transition:transform 0.2s;}
+  .dock-center:hover{transform:scale(1.05);}
 
-    /* ── AUDIT RESULTS MOCKUP ── */
-    #auditResultsContainer{display:none;margin:20px 0 40px;}
-    #auditResultsContainer .res-card{background:white;border-radius:28px;padding:28px;border:1px solid var(--border);box-shadow:0 12px 32px rgba(0,0,0,0.06);}
-   .res-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #f0ece6;}
-   .res-business h2{font-size:1.3rem;font-weight:900;color:#1a1a;}
-   .res-business p{font-size:0.8rem;color:#888;}
-   .res-business .contact{font-size:0.75rem;color:#888;margin-top:4px;}
-   .res-business .contact i{margin-right:4px;color:var(--primary);}
-   .res-score{text-align:center;}
-   .res-score .num{font-size:2.8rem;font-weight:900;line-height:1;}
-   .res-score .label{font-size:0.65rem;color:#888;font-weight:700;letter-spacing:1px;}
-   .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin:16px 0;background:#f9f5f0;padding:16px;border-radius:16px;}
-   .res-grid .item{text-align:center;}
-   .res-grid .item .val{font-weight:900;font-size:1.1rem;color:#1a1a;}
-   .res-grid .item .lbl{font-size:0.6rem;color:#888;text-transform:uppercase;letter-spacing:0.5px;}
-   .score-bar-wrap{margin:16px 0;padding:12px 16px;background:#f5f0ea;border-radius:12px;}
-   .score-bar-wrap .bar-header{display:flex;justify-content:space-between;font-weight:700;font-size:0.8rem;margin-bottom:6px;}
-   .score-bar-wrap .bar-header .health{color:var(--primary);}
-   .score-bar-wrap .bar-track{height:10px;background:#e8e0d8;border-radius:60px;overflow:hidden;}
-   .score-bar-wrap .bar-track .bar-fill{height:100%;background:var(--primary);border-radius:60px;}
-   .res-issues{margin:16px 0;}
-   .res-issue{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f5ece4;font-size:0.85rem;font-weight:600;}
-   .res-issue i{width:20px;text-align:center;font-size:0.9rem;}
-   .res-issue .icon-danger{color:#dc2626;}
-   .res-issue .icon-warn{color:#f59e0b;}
-   .res-issue .icon-success{color:#22c55e;}
-   .res-plan-box{background:linear-gradient(135deg,#FFF9F5 0%,#FFEFE5 100%);border-radius:20px;padding:20px;margin:16px 0;border:2px solid var(--primary);}
-   .res-plan-box h3{font-size:1.1rem;font-weight:900;}
-   .res-plan-box .price{font-size:1.8rem;font-weight:900;color:var(--primary);}
-   .res-plan-box .price small{font-size:0.85rem;font-weight:500;color:#888;}
-   .res-plan-box ul{list-style:none;margin:12px 0;}
-   .res-plan-box ul li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.85rem;font-weight:600;}
-   .res-plan-box ul li i{color:#22c55e;width:18px;}
-   .btn-pay{background:var(--primary);color:white;border:none;border-radius:60px;padding:14px;width:100%;font-weight:900;font-size:1rem;cursor:pointer;transition:0.2s;}
-   .btn-pay:hover{background:#E56000;transform:scale(1.01);}
-   .res-view-link{text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid #f0ece6;}
-   .res-view-link a{color:var(--primary);font-weight:700;text-decoration:none;font-size:0.85rem;transition:0.2s;}
-   .res-view-link a:hover{text-decoration:underline;}
-   .res-view-link p{font-size:0.65rem;color:#999;margin-top:4px;}
-   .loading-spinner{text-align:center;padding:40px 0;}
-   .loading-spinner .spinner{width:48px;height:48px;border:5px solid #f0e8e0;border-top-color:var(--primary);border-radius:50%;display:inline-block;animation:spin 1s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg);}}
-   .loading-spinner p{margin-top:12px;color:#888;font-weight:600;}
-   .loading-spinner .sub{font-size:0.8rem;color:#aaa;margin-top:4px;}
+  /* ── AUDIT RESULTS MOCKUP ── */
+  #auditResultsContainer{display:none;margin:20px 0 40px;}
+  #auditResultsContainer .res-card{background:white;border-radius:28px;padding:28px;border:1px solid var(--border);box-shadow:0 12px 32px rgba(0,0,0,0.06);}
+  .res-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #f0ece6;}
+  .res-business h2{font-size:1.3rem;font-weight:900;color:#1a1a1a;}
+  .res-business p{font-size:0.8rem;color:#888;}
+  .res-business .contact{font-size:0.75rem;color:#888;margin-top:4px;}
+  .res-business .contact i{margin-right:4px;color:var(--primary);}
+  .res-score{text-align:center;}
+  .res-score .num{font-size:2.8rem;font-weight:900;line-height:1;}
+  .res-score .label{font-size:0.65rem;color:#888;font-weight:700;letter-spacing:1px;}
+  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin:16px 0;background:#f9f5f0;padding:16px;border-radius:16px;}
+  .res-grid .item{text-align:center;}
+  .res-grid .item .val{font-weight:900;font-size:1.1rem;color:#1a1a1a;}
+  .res-grid .item .lbl{font-size:0.6rem;color:#888;text-transform:uppercase;letter-spacing:0.5px;}
+  .score-bar-wrap{margin:16px 0;padding:12px 16px;background:#f5f0ea;border-radius:12px;}
+  .score-bar-wrap .bar-header{display:flex;justify-content:space-between;font-weight:700;font-size:0.8rem;margin-bottom:6px;}
+  .score-bar-wrap .bar-header .health{color:var(--primary);}
+  .score-bar-wrap .bar-track{height:10px;background:#e8e0d8;border-radius:60px;overflow:hidden;}
+  .score-bar-wrap .bar-track .bar-fill{height:100%;background:var(--primary);border-radius:60px;}
+  .res-issues{margin:16px 0;}
+  .res-issue{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f5ece4;font-size:0.85rem;font-weight:600;}
+  .res-issue i{width:20px;text-align:center;font-size:0.9rem;}
+  .res-issue .icon-danger{color:#dc2626;}
+  .res-issue .icon-warn{color:#f59e0b;}
+  .res-issue .icon-success{color:#22c55e;}
+  .res-plan-box{background:linear-gradient(135deg,#FFF9F5 0%,#FFEFE5 100%);border-radius:20px;padding:20px;margin:16px 0;border:2px solid var(--primary);}
+  .res-plan-box h3{font-size:1.1rem;font-weight:900;}
+  .res-plan-box .price{font-size:1.8rem;font-weight:900;color:var(--primary);}
+  .res-plan-box .price small{font-size:0.85rem;font-weight:500;color:#888;}
+  .res-plan-box ul{list-style:none;margin:12px 0;}
+  .res-plan-box ul li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.85rem;font-weight:600;}
+  .res-plan-box ul li i{color:#22c55e;width:18px;}
+  .btn-pay{background:var(--primary);color:white;border:none;border-radius:60px;padding:14px;width:100%;font-weight:900;font-size:1rem;cursor:pointer;transition:0.2s;}
+  .btn-pay:hover{background:#E56000;transform:scale(1.01);}
+  .res-view-link{text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid #f0ece6;}
+  .res-view-link a{color:var(--primary);font-weight:700;text-decoration:none;font-size:0.85rem;transition:0.2s;}
+  .res-view-link a:hover{text-decoration:underline;}
+  .res-view-link p{font-size:0.65rem;color:#999;margin-top:4px;}
+  .loading-spinner{text-align:center;padding:40px 0;}
+  .loading-spinner .spinner{width:48px;height:48px;border:5px solid #f0e8e0;border-top-color:var(--primary);border-radius:50%;display:inline-block;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-spinner p{margin-top:12px;color:#888;font-weight:600;}
+  .loading-spinner .sub{font-size:0.8rem;color:#aaa;margin-top:4px;}
 </style>
-
-
-    
 </head>
 <body>
 
@@ -343,7 +341,7 @@
     <div class="hiw-section"><span class="section-header">How It Works</span><div class="hiw-steps"><div class="hiw-step"><div class="hiw-num">1</div><div class="hiw-content"><h3>Paste your Google Maps URL or business name</h3><p>Enter your Google Maps business link or just type your business name + city. We'll find your profile.</p></div></div><div class="hiw-step"><div class="hiw-num">2</div><div class="hiw-content"><h3>Get your free Google Profile Score</h3><p>We instantly analyse your GBP and show you exactly where your profile is losing you customers.</p></div></div><div class="hiw-step"><div class="hiw-num">3</div><div class="hiw-content"><h3>Choose a plan that fits your budget</h3><p>We show you the right VIBZ package based on your score. Pay online — we start fixing immediately.</p></div></div><div class="hiw-step"><div class="hiw-num">4</div><div class="hiw-content"><h3>We do all the work — you get the calls</h3><p>Our team optimises your Google profile from top to bottom. Most clients see results within the first 30 days.</p></div></div></div></div>
 
     <!-- LISTING EXAMPLE -->
-    <div class="listing-section" id="listingSection"><div class="listing-header"><span class="lst-badge">REAL EXAMPLE</span><h2>This is what a <span>winning listing</span> looks like</h2><p>Toggle between before and after to see how we transform a local phone repair business into a top-ranked profile.</p></div><div class="listing-toggle"><span class="toggle-label active" id="lblBefore">BEFORE</span><div class="toggle-track" id="listingToggle" onclick="toggleListing()"><div class="toggle-thumb"></div></div><span class="toggle-label" id="lblAfter">AFTER</span></div><div class="biz-card" id="listingBefore"><div class="biz-hero" style="background:#2a2a2a;"><div class="biz-hero-bg-circles"><span></span><span></span><span></span></div><div class="biz-hero-overlay"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;"><i class="fa-solid fa-image-slash" style="font-size:2rem;color:#555;"></i><span style="font-size:11px;color:#666;font-weight:700;">No photos uploaded</span></div></div><div class="biz-body"><div class="biz-name-row"><span class="biz-name">Fix-It Phone Repairs</span><span style="font-size:9px;font-weight:800;color:#c62828;background:#fee2e2;padding:3px 8px;border-radius:60px;">⚠ UNVERIFIED</span></div><div class="biz-cat-row">Phone repair shop</div><div class="biz-stars-row"><div class="biz-stars"><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star off">★</span><span class="biz-star off">★</span></div><span class="biz-review-txt">3.2 · 4 reviews · No replies</span></div><div class="biz-info-row"><i class="fa-solid fa-location-dot"></i> 14 High Street, Slough, SL1 1DY</div><div class="biz-info-row"><i class="fa-regular fa-clock"></i> <span style="color:#c62828;font-weight:800;">Hours not listed</span></div><div class="biz-info-row"><i class="fa-solid fa-phone"></i> <span style="color:#aaa;">No phone number added</span></div><div class="biz-info-row"><i class="fa-solid fa-globe"></i> <span style="color:#aaa;">No website linked</span></div><div class="biz-actions"><div class="biz-act"><i class="fa-solid fa-phone"></i>Call</div><div class="biz-act" style="opacity:.35;"><i class="fa-solid fa-globe"></i>Website</div><div class="biz-act" style="opacity:.35;"><i class="fa-regular fa-message"></i>Message</div><div class="biz-act"><i class="fa-solid fa-location-dot"></i>Directions</div></div><div class="biz-tags"><span class="biz-tag">No description</span><span class="biz-tag" style="color:#c62828;background:#fee2e2;">0 posts</span><span class="biz-tag" style="color:#c62828;background:#fee2e2;">0 photo replies</span></div></div></div><div class="biz-card vibz-after" id="listingAfter" style="display:none;"><div class="biz-hero"><div class="biz-hero-bg-circles"><span></span><span></span></div><div class="biz-hero-overlay"></div><div class="biz-open-tag"><div class="biz-open-dot"></div>OPEN NOW</div><div class="biz-rating-badge"><span class="star">★</span> 4.9 · 47 reviews</div></div><div class="biz-body"><div class="biz-name-row"><span class="biz-name">Fix-It Phone Repairs</span><span class="biz-verified-chip"><i class="fa-solid fa-circle-check"></i> VERIFIED</span></div><div class="biz-cat-row"><span>Phone repair</span> · iPhone · Samsung · Screen fix · Battery</div><div class="biz-stars-row"><div class="biz-stars"><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span></div><span class="biz-review-txt">4.9 · 47 reviews · All replied ✓</span></div><div class="biz-info-row"><i class="fa-solid fa-location-dot"></i> 14 High Street, Slough, SL1 1DY</div><div class="biz-info-row"><i class="fa-regular fa-clock"></i> <span style="color:#22c55e;font-weight:800;">Open</span> · Mon–Sat 9am–6pm · Sun 10am–4pm</div><div class="biz-info-row"><i class="fa-solid fa-phone"></i> 01753 123 456</div><div class="biz-info-row"><i class="fa-solid fa-globe"></i> fixitphonerepairs.co.uk</div><div class="biz-actions"><div class="biz-act primary-act"><i class="fa-solid fa-phone"></i>Call</div><div class="biz-act primary-act"><i class="fa-solid fa-globe"></i>Website</div><div class="biz-act primary-act"><i class="fa-regular fa-message"></i>Message</div><div class="biz-act"><i class="fa-solid fa-location-dot"></i>Directions</div></div><div class="biz-tags"><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Same-day repairs</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">24 photos</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Weekly posts</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Top 3 on Maps</span></div></div><div class="vibz-powered">⚡ OPTIMISED BY VIBZ</div></div><p style="text-align:center;font-size:12px;color:#aaa;margin-top:16px;font-weight:600;">Toggle between states — this is what we deliver for every client</p></div>
+    <div class="listing-section" id="listingSection"><div class="listing-header"><span class="lst-badge">REAL EXAMPLE</span><h2>This is what a <span>winning listing</span> looks like</h2><p>Toggle between before and after to see how we transform a local phone repair business into a top-ranked profile.</p></div><div class="listing-toggle"><span class="toggle-label active" id="lblBefore">BEFORE</span><div class="toggle-track" id="listingToggle" onclick="toggleListing()"><div class="toggle-thumb"></div></div><span class="toggle-label" id="lblAfter">AFTER</span></div><div class="biz-card" id="listingBefore"><div class="biz-hero" style="background:#2a;"><div class="biz-hero-bg-circles"><span></span><span></span></div><div class="biz-hero-overlay"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;"><i class="fa-solid fa-image-slash" style="font-size:2rem;color:#555;"></i><span style="font-size:11px;color:#666;font-weight:700;">No photos uploaded</span></div></div><div class="biz-body"><div class="biz-name-row"><span class="biz-name">Fix-It Phone Repairs</span><span style="font-size:9px;font-weight:800;color:#c62828;background:#fee2e2;padding:3px 8px;border-radius:60px;">⚠ UNVERIFIED</span></div><div class="biz-cat-row">Phone repair shop</div><div class="biz-stars-row"><div class="biz-stars"><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star off">★</span><span class="biz-star off">★</span></div><span class="biz-review-txt">3.2 · 4 reviews · No replies</span></div><div class="biz-info-row"><i class="fa-solid fa-location-dot"></i> 14 High Street, Slough, SL1 1DY</div><div class="biz-info-row"><i class="fa-regular fa-clock"></i> <span style="color:#c62828;font-weight:800;">Hours not listed</span></div><div class="biz-info-row"><i class="fa-solid fa-phone"></i> <span style="color:#aaa;">No phone number added</span></div><div class="biz-info-row"><i class="fa-solid fa-globe"></i> <span style="color:#aaa;">No website linked</span></div><div class="biz-actions"><div class="biz-act"><i class="fa-solid fa-phone"></i>Call</div><div class="biz-act" style="opacity:.35;"><i class="fa-solid fa-globe"></i>Website</div><div class="biz-act" style="opacity:.35;"><i class="fa-regular fa-message"></i>Message</div><div class="biz-act"><i class="fa-solid fa-location-dot"></i>Directions</div></div><div class="biz-tags"><span class="biz-tag">No description</span><span class="biz-tag" style="color:#c62828;background:#fee2e2;">0 posts</span><span class="biz-tag" style="color:#c62828;background:#fee2e2;">0 photo replies</span></div></div><div class="biz-card vibz-after" id="listingAfter" style="display:none;"><div class="biz-hero"><div class="biz-hero-bg-circles"><span></span><span></div><div class="biz-hero-overlay"></div><div class="biz-open-tag"><div class="biz-open-dot"></div>OPEN NOW</div><div class="biz-rating-badge"><span class="star">★</span> 4.9 · 47 reviews</div></div><div class="biz-body"><div class="biz-name-row"><span class="biz-name">Fix-It Phone Repairs</span><span class="biz-verified-chip"><i class="fa-solid fa-circle-check"></i> VERIFIED</span></div><div class="biz-cat-row"><span>Phone repair</span> · iPhone · Samsung · Screen fix · Battery</div><div class="biz-stars-row"><div class="biz-stars"><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span></div><span class="biz-review-txt">4.9 · 47 reviews · All replied ✓</span></div><div class="biz-info-row"><i class="fa-solid fa-location-dot"></i> 14 High Street, Slough, SL1 1DY</div><div class="biz-info-row"><i class="fa-regular fa-clock"></i> <span style="color:#22c55e;font-weight:800;">Open</span> · Mon–Sat 9am–6pm · Sun 10am–4pm</div><div class="biz-info-row"><i class="fa-solid fa-phone"></i> 01753 123 456</div><div class="biz-info-row"><i class="fa-solid fa-globe"></i> fixitphonerepairs.co.uk</div><div class="biz-actions"><div class="biz-act primary-act"><i class="fa-solid fa-phone"></i>Call</div><div class="biz-act primary-act"><i class="fa-solid fa-globe"></i>Website</div><div class="biz-act primary-act"><i class="fa-regular fa-message"></i>Message</div><div class="biz-act"><i class="fa-solid fa-location-dot"></i>Directions</div></div><div class="biz-tags"><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Same-day repairs</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">24 photos</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Weekly posts</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Top 3 on Maps</span></div></div><div class="vibz-powered">⚡ OPTIMISED BY VIBZ</div></div><p style="text-align:center;font-size:12px;color:#aaa;margin-top:16px;font-weight:600;">Toggle between states — this is what we deliver for every client</p></div>
 
     <!-- ABA SECTION -->
     <div class="aba-section"><div class="aba-header"><span class="aba-badge">BEFORE &amp; AFTER</span><h2>Watch how we transform a<br><span>phone repair shop on Google</span></h2><p>Each improvement happens automatically — see exactly what we fix and why it matters.</p></div><div class="aba-card-wrap" id="abaWrap"><div class="aba-pointer" id="abaPointer" style="top:60px;left:20px;opacity:0;">👉</div><div class="aba-card" id="abaCard"><div class="aba-status-bar before" id="abaStatusBar"><div class="aba-status-dot"></div><span id="abaStatusText">⚠ Before Optimisation</span></div><div class="aba-verified" id="abaVerified"><i class="fa-solid fa-circle-check"></i> VERIFIED BY VIBZ</div><div class="aba-biz-row"><div class="aba-biz-name">Fix-It Phone Repairs</div><div class="aba-biz-cat" id="abaCat">Phone repair shop</div></div><div class="aba-stars-row"><div class="aba-stars" id="abaStars"><span class="aba-star on">★</span><span class="aba-star on">★</span><span class="aba-star on">★</span><span class="aba-star off">★</span><span class="aba-star off">★</span></div><span class="aba-review-count" id="abaReviewCount">3.2 • 4 reviews</span></div><div class="aba-section-item bad" id="abaS1"><div class="aba-item-label">Profile Status</div><span class="aba-item-text">❌ Unverified — suppressed by Google</span><span class="aba-item-icon">🔒</span></div><div class="aba-section-item bad" id="abaS2"><div class="aba-item-label">Business Description</div><span class="aba-item-text">❌ No description — missing key search words</span></div><div class="aba-section-item bad" id="abaS3"><div class="aba-item-label">Photos & Media</div><span class="aba-item-text">❌ 0 photos — profile looks abandoned</span></div><div class="aba-section-item bad" id="abaS4"><div class="aba-item-label">Opening Hours</div><span class="aba-item-text">❌ Hours missing — customers assume closed</span></div><div class="aba-section-item bad" id="abaS5"><div class="aba-item-label">Google Posts</div><span class="aba-item-text">❌ Never posted — profile appears inactive</span></div><div class="aba-section-item bad" id="abaS6" style="margin-bottom:18px"><div class="aba-item-label">Review Responses</div><span class="aba-item-text">❌ 0 replies — looks unmanaged & untrustworthy</span></div><div class="aba-action-row" id="abaActions"><div class="aba-action-btn" id="abaAct1"><i class="fa-solid fa-phone"></i> Call</div><div class="aba-action-btn" id="abaAct2"><i class="fa-solid fa-location-dot"></i> Directions</div><div class="aba-action-btn" id="abaAct3" style="opacity:.35"><i class="fa-solid fa-globe"></i> Website</div><div class="aba-action-btn" id="abaAct4" style="opacity:.35"><i class="fa-regular fa-message"></i> Message</div></div></div><div class="aba-progress" id="abaDots"><div class="aba-dot active"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div></div><button class="aba-replay-btn" id="abaReplayBtn" onclick="runABA()">↺ Replay Animation</button></div></div>
@@ -388,14 +386,42 @@
 </div>
 
 <script>
-// ── OneSignal Permission Function ──
+// ── OneSignal Permission Function - FIXED ──
 async function enablePush() {
-  await OneSignal.Notifications.requestPermission();
-  const permission = await OneSignal.Notifications.permission;
-  if (permission) {
-    alert('Notifications enabled! You\'ll get updates from VIBZ.');
-  } else {
-    alert('Permission denied. Enable in browser settings to get updates.');
+  console.log('Button clicked - checking OneSignal');
+  
+  if (typeof OneSignal === 'undefined') {
+    alert('OneSignal not loaded yet. Wait 2 seconds and try again, or check your internet.');
+    return;
+  }
+  
+  try {
+    const permission = await OneSignal.Notifications.permission;
+    console.log('Current permission:', permission);
+    
+    if (permission === true) {
+      alert('You\'re already subscribed! Check iPhone Settings > Notifications > VIBZ');
+      return;
+    }
+    
+    if (permission === false) {
+      alert('You blocked notifications. Go to iPhone Settings > VIBZ > Notifications > Allow Notifications');
+      return;
+    }
+    
+    console.log('Requesting permission...');
+    await OneSignal.Notifications.requestPermission();
+    
+    const newPermission = await OneSignal.Notifications.permission;
+    if (newPermission) {
+      alert('Notifications enabled! You\'ll get updates from VIBZ.');
+    } else {
+      alert('Permission denied or dismissed. Try again from Home Screen PWA.');
+    }
+    
+  } catch(e) {
+    console.error('OneSignal error:', e);
+    alert('Error: ' + e.message + '\n\nCheck: 1) App is installed to home screen 2) iOS 16.4+ 3) App ID correct');
   }
 }
 
@@ -405,7 +431,7 @@ let tIdx=0,tChar=0,tDel=false,tWait=false;
 const tEl=document.getElementById('typewriter');
 setInterval(()=>{
   if(!tEl||tWait) return;
-  const w=words[tIdx];
+  const w=words;
   if(!tDel){
     tEl.textContent=w.substring(0,tChar+1);
     tChar++;
@@ -447,7 +473,6 @@ function runAuditMock() {
   const container = document.getElementById('auditResultsContainer');
   const card = document.getElementById('auditResultsCard');
 
-  // Show loading
   container.style.display = 'block';
   card.innerHTML = `
     <div class="loading-spinner">
@@ -457,10 +482,8 @@ function runAuditMock() {
     </div>
   `;
 
-  // Scroll to results
   container.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  // Simulate API delay
   const delay = 1800 + Math.random() * 700;
   setTimeout(() => {
     const mockData = generateMockAudit(input);
